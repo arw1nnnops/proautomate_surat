@@ -1,0 +1,13 @@
+{
+  "name": "otomatisasi-surat-nsd",
+  "version": "2.2.0",
+  "private": true,
+  "description": "Aplikasi web otomatisasi memo masuk menjadi surat resmi S-Seg Wil Divisi NSD BNI berbasis Cloudflare Workers & Gemini AI",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
