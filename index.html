@@ -649,8 +649,8 @@ CC: Divisi MCM, WEM, COP, BOP, CXC dan CRS`
 
             function buildExactBniLetterHtml({ perihal, referensiLine, lampiran, bodyPointsHtml, usulanTableHtml, arahanHtml, picTableHtml, ccText }) {
         return `
-          <div style="display:flex;justify-content:flex-end;margin-bottom:14px;">
-            <img src="${BNI_LOGO_URI}" alt="BNI" style="height:42px;width:auto;" />
+          <div class="preview-only-header" style="text-align:right;margin-bottom:14px;">
+            <img src="${BNI_LOGO_URI}" alt="BNI" style="height:42px;width:auto;display:inline-block;" />
           </div>
 
           <div style="margin-bottom:10px;font-size:10pt;">Jakarta</div>
@@ -707,12 +707,14 @@ CC: Divisi MCM, WEM, COP, BOP, CXC dan CRS`
 
           <div style="margin-top:14px;font-size:10pt;font-weight:700;">CC: ${escHtml(ccText)}</div>
 
-          <div style="margin-top:36px;padding-top:10px;border-top:1px solid #e5e7eb;font-size:8pt;color:#005E6A;line-height:1.35;">
-            <div style="font-weight:700;">PT Bank Negara Indonesia (Persero) Tbk.</div>
-            <div style="font-weight:700;">Kantor Pusat</div>
-            <div>Jl. Jend. Sudirman Kav. 1</div>
-            <div>Jakarta Pusat 10220, Indonesia</div>
-            <div style="text-decoration:underline;">www.bni.co.id</div>
+          <div class="preview-only-footer" style="margin-top:36px;display:flex;justify-content:flex-end;width:100%;">
+            <div style="text-align:left;font-size:8.5pt;color:#006677;line-height:1.35;">
+              <div style="font-weight:700;">PT Bank Negara Indonesia (Persero) Tbk.</div>
+              <div style="font-weight:700;margin-bottom:2px;">Kantor Pusat</div>
+              <div>Jl. Jend. Sudirman Kav. 1</div>
+              <div>Jakarta Pusat 10220, Indonesia</div>
+              <div style="color:#2563EB;text-decoration:underline;">www.bni.co.id</div>
+            </div>
           </div>
         `;
       }
@@ -1411,6 +1413,9 @@ Kembalikan HANYA JSON valid dengan kunci:
       }
 
       function downloadWord() {
+        const clone = els.letterContent.cloneNode(true);
+        clone.querySelectorAll('.preview-only-header, .preview-only-footer').forEach((el) => el.remove());
+
         const htmlDoc = `
           <html xmlns:o="urn:schemas-microsoft-com:office:office"
                 xmlns:w="urn:schemas-microsoft-com:office:word"
@@ -1418,17 +1423,59 @@ Kembalikan HANYA JSON valid dengan kunci:
           <head>
             <meta charset="utf-8" />
             <title>${escHtml(state.lastPerihal)}</title>
+            <!--[if gte mso 9]><xml>
+              <w:WordDocument>
+                <w:View>Print</w:View>
+                <w:Zoom>100</w:Zoom>
+              </w:WordDocument>
+            </xml><![endif]-->
             <style>
-              @page { size: A4; margin: 2cm 2.2cm; }
+              @page Section1 {
+                size: 21cm 29.7cm;
+                margin: 2.6cm 2.2cm 2.6cm 2.5cm;
+                mso-header-margin: 1.0cm;
+                mso-footer-margin: 1.0cm;
+                mso-header: h1;
+                mso-footer: f1;
+              }
+              div.Section1 { page: Section1; }
               body { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 1.45; color: #000000; }
               p, .point-item, .sub-item { margin: 0 0 7pt; text-align: justify; }
               .doc-table { width: 100%; border-collapse: collapse; margin: 8pt 0 12pt; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; }
               .doc-table th, .doc-table td { border: 1px solid #000000; padding: 5pt 6pt; vertical-align: top; }
               .doc-table th { background: #f2f2f2; font-weight: bold; text-align: center; }
+              table.hf-hidden { margin-left: 500in; }
+              div.MsoHeader, div.MsoFooter { font-family: Arial, Helvetica, sans-serif; margin: 0; }
             </style>
           </head>
           <body>
-            ${els.letterContent.innerHTML}
+            <div class="Section1">
+              ${clone.innerHTML}
+            </div>
+
+            <table class="hf-hidden" border="0" cellspacing="0" cellpadding="0">
+              <tr><td>
+                <div style="mso-element:header" id="h1" class="MsoHeader">
+                  <p style="margin:0;text-align:right;">
+                    <img src="${BNI_LOGO_URI}" alt="BNI" height="40" style="height:40px;width:auto;" />
+                  </p>
+                </div>
+                <div style="mso-element:footer" id="f1" class="MsoFooter">
+                  <table border="0" cellspacing="0" cellpadding="0" width="100%" style="border-collapse:collapse;">
+                    <tr>
+                      <td width="55%">&nbsp;</td>
+                      <td width="45%" style="text-align:left;font-family:Arial,sans-serif;font-size:8pt;color:#006677;line-height:1.3;">
+                        <p style="margin:0;text-align:left;font-weight:bold;color:#006677;">PT Bank Negara Indonesia (Persero) Tbk.</p>
+                        <p style="margin:0 0 2pt 0;text-align:left;font-weight:bold;color:#006677;">Kantor Pusat</p>
+                        <p style="margin:0;text-align:left;color:#006677;">Jl. Jend. Sudirman Kav. 1</p>
+                        <p style="margin:0;text-align:left;color:#006677;">Jakarta Pusat 10220, Indonesia</p>
+                        <p style="margin:0;text-align:left;color:#2563EB;text-decoration:underline;">www.bni.co.id</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td></tr>
+            </table>
           </body>
           </html>`;
 
