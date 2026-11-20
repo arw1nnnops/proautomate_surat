@@ -324,7 +324,7 @@
     </main>
   </div>
 
-  <footer class="max-w-5xl mx-auto mt-10 text-center text-[11px] text-[#7b909a]">Surat NSD · v2.2 (Template Resmi BNI NSD)</footer>
+  <footer class="max-w-5xl mx-auto mt-10 text-center text-[11px] text-[#7b909a]">Surat NSD · v2.3 (Header & Footer Hal. 1)</footer>
 
   <!-- Minimal Toast -->
   <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-[#0e252c] text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-lg shadow-lg"></div>
@@ -707,8 +707,8 @@ CC: Divisi MCM, WEM, COP, BOP, CXC dan CRS`
 
           <div style="margin-top:14px;font-size:10pt;font-weight:700;">CC: ${escHtml(ccText)}</div>
 
-          <div class="preview-only-footer" style="margin-top:36px;display:flex;justify-content:flex-end;width:100%;">
-            <div style="text-align:left;font-size:8.5pt;color:#006677;line-height:1.35;">
+          <div class="preview-only-footer" style="margin-top:36px;width:100%;text-align:right;">
+            <div style="display:inline-block;text-align:right;font-size:8.5pt;color:#006677;line-height:1.35;">
               <div style="font-weight:700;">PT Bank Negara Indonesia (Persero) Tbk.</div>
               <div style="font-weight:700;margin-bottom:2px;">Kantor Pusat</div>
               <div>Jl. Jend. Sudirman Kav. 1</div>
@@ -1432,10 +1432,13 @@ Kembalikan HANYA JSON valid dengan kunci:
             <style>
               @page Section1 {
                 size: 21cm 29.7cm;
-                margin: 2.6cm 2.2cm 2.6cm 2.5cm;
+                margin: 2.5cm 2.2cm 2.5cm 2.5cm;
                 mso-header-margin: 1.0cm;
-                mso-footer-margin: 1.0cm;
+                mso-footer-margin: 0.9cm;
+                mso-title-page: yes;
+                mso-first-header: h1;
                 mso-header: h1;
+                mso-first-footer: ff1;
                 mso-footer: f1;
               }
               div.Section1 { page: Section1; }
@@ -1456,23 +1459,19 @@ Kembalikan HANYA JSON valid dengan kunci:
             <table class="hf-hidden" border="0" cellspacing="0" cellpadding="0">
               <tr><td>
                 <div style="mso-element:header" id="h1" class="MsoHeader">
-                  <p style="margin:0;text-align:right;">
+                  <p align="right" style="margin:0;text-align:right;">
                     <img src="${BNI_LOGO_URI}" alt="BNI" height="40" style="height:40px;width:auto;" />
                   </p>
                 </div>
+                <div style="mso-element:footer" id="ff1" class="MsoFooter">
+                  <p align="right" style="margin:0;text-align:right;font-family:Arial,sans-serif;font-size:8pt;font-weight:bold;color:#006677;line-height:1.3;">PT Bank Negara Indonesia (Persero) Tbk.</p>
+                  <p align="right" style="margin:0 0 2pt 0;text-align:right;font-family:Arial,sans-serif;font-size:8pt;font-weight:bold;color:#006677;line-height:1.3;">Kantor Pusat</p>
+                  <p align="right" style="margin:0;text-align:right;font-family:Arial,sans-serif;font-size:8pt;color:#006677;line-height:1.3;">Jl. Jend. Sudirman Kav. 1</p>
+                  <p align="right" style="margin:0;text-align:right;font-family:Arial,sans-serif;font-size:8pt;color:#006677;line-height:1.3;">Jakarta Pusat 10220, Indonesia</p>
+                  <p align="right" style="margin:0;text-align:right;font-family:Arial,sans-serif;font-size:8pt;color:#2563EB;text-decoration:underline;line-height:1.3;">www.bni.co.id</p>
+                </div>
                 <div style="mso-element:footer" id="f1" class="MsoFooter">
-                  <table border="0" cellspacing="0" cellpadding="0" width="100%" style="border-collapse:collapse;">
-                    <tr>
-                      <td width="55%">&nbsp;</td>
-                      <td width="45%" style="text-align:left;font-family:Arial,sans-serif;font-size:8pt;color:#006677;line-height:1.3;">
-                        <p style="margin:0;text-align:left;font-weight:bold;color:#006677;">PT Bank Negara Indonesia (Persero) Tbk.</p>
-                        <p style="margin:0 0 2pt 0;text-align:left;font-weight:bold;color:#006677;">Kantor Pusat</p>
-                        <p style="margin:0;text-align:left;color:#006677;">Jl. Jend. Sudirman Kav. 1</p>
-                        <p style="margin:0;text-align:left;color:#006677;">Jakarta Pusat 10220, Indonesia</p>
-                        <p style="margin:0;text-align:left;color:#2563EB;text-decoration:underline;">www.bni.co.id</p>
-                      </td>
-                    </tr>
-                  </table>
+                  <p style="margin:0;">&nbsp;</p>
                 </div>
               </td></tr>
             </table>
