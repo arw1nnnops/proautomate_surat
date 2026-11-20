@@ -1,5 +1,5 @@
 name = "otomatisasi-surat"
-main = "src/worker.js"
+main = "worker.js"
 compatibility_date = "2026-11-19"
 
 [assets]
